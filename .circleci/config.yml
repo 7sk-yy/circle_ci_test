@@ -1,0 +1,25 @@
+version: 2.1
+
+executors:
+  ruby-main:
+    docker:
+      - image: cimg/ruby:3.2.2
+    working_directory: ~/app
+
+jobs:
+  test:
+    executor: ruby-executor
+    steps:
+      - checkout
+      - run: bundle install
+      - run bundle exec rspec \
+        --format RspecJunitFormatter \
+        --format progress \
+        --out test-results/rspec.yml
+      - store_test_results:
+          path: test-results
+
+workflows:
+  test:
+    jobs:
+      - test
