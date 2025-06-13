@@ -12,10 +12,12 @@ jobs:
     steps:
       - checkout
       - run: bundle install
-      - run bundle exec rspec \
-        --format RspecJunitFormatter \
-        --format progress \
-        --out test-results/rspec.yml
+      - run:
+        command: |
+          bundle exec rspec \
+            --format RspecJunitFormatter \
+            --format progress \
+            --out test-results/rspec.yml
       - store_test_results:
           path: test-results
 
