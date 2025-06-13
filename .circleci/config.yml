@@ -16,7 +16,7 @@ jobs:
           command: |
             bundle exec rspec \
               --format RspecJunitFormatter \
-              --out test-results/rspec.yml \
+              --out test-results/rspec.xml \
               --format progress
       - store_test_results:
           path: test-results
