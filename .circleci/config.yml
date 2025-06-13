@@ -9,7 +9,7 @@ executors:
 jobs:
   test:
     executor: ruby-main
-    parallelism: 2
+    parallelism: 1
     steps:
       - checkout
       - run: bundle install
