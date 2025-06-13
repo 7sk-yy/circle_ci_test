@@ -8,7 +8,7 @@ RSpec.describe "tests" do
   it 'flaky' do
     flaky = rand
     puts flaky
-    expect(flaky).to be >= 0.5
+    expect(flaky).to be >= 0.75
   end
 end
 

@@ -9,6 +9,7 @@ executors:
 jobs:
   test:
     executor: ruby-main
+    parallelism: 2
     steps:
       - checkout
       - run: bundle install
@@ -17,9 +18,13 @@ jobs:
             bundle exec rspec \
               --format RspecJunitFormatter \
               --out test-results/rspec.xml \
-              --format progress
+              --format progress \
+              $(circleci tests glob "spec/**/*_spec.rb" | circleci tests split --split-by=timings)
       - store_test_results:
           path: test-results
+      - store_artifacts:
+          path: test-results
+          destination: rspec-results
 
 workflows:
   test:
