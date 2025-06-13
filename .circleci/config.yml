@@ -13,11 +13,11 @@ jobs:
       - checkout
       - run: bundle install
       - run:
-        command: |
-          bundle exec rspec \
-            --format RspecJunitFormatter \
-            --format progress \
-            --out test-results/rspec.yml
+          command: |
+            bundle exec rspec \
+              --format RspecJunitFormatter \
+              --format progress \
+              --out test-results/rspec.yml
       - store_test_results:
           path: test-results
 
