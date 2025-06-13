@@ -15,11 +15,8 @@ jobs:
       - run: bundle install
       - run:
           command: |
-            bundle exec rspec \
-              --format RspecJunitFormatter \
-              --out test-results/rspec.xml \
-              --format progress \
-              $(circleci tests glob "spec/**/*_spec.rb" | circleci tests split --split-by=timings)
+            circleci tests glob "spec/**/*_spec.rb" | \
+            circleci tests run --command="xargs bundle exec rspec --format progress --format RspecJunitFormatter --out test-results/rspec.xml" --verbose --split-by=timings
       - store_test_results:
           path: test-results
       - store_artifacts:
