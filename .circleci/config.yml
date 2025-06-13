@@ -8,7 +8,7 @@ executors:
 
 jobs:
   test:
-    executor: ruby-executor
+    executor: ruby-main
     steps:
       - checkout
       - run: bundle install
